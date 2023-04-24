@@ -1,64 +1,95 @@
-import './style.css'
+import './style.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import GeoJSON from 'ol/format/GeoJSON.js';
 import Map from 'ol/Map.js';
+import VectorLayer from 'ol/layer/Vector.js';
+import VectorSource from 'ol/source/Vector.js';
 import View from 'ol/View.js';
-import { Stroke, Style} from 'ol/style.js';
-import {Draw, Modify} from 'ol/interaction.js';
-import {OSM, Vector as VectorSource} from 'ol/source.js';
-import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
+import {
+  Modify,
+  Select,
+  defaults as defaultInteractions,
+} from 'ol/interaction.js';
+import {fromLonLat} from 'ol/proj.js';
 
-const typeSelect = document.getElementById("type");
-
-//Set the color and width of line go to draw
-const style = new Style({
-  stroke: new Stroke({
-    color: 'rgb(0, 0, 0)',
-    line: 1,
-    width: 3,
-  })
-});
-
-const raster = new TileLayer({
-  source: new OSM(),
-});
-
-const source = new VectorSource();
-
-function styleFunction() {
-  const styles = [style];
-  return styles;
-}
-
-//keep the style of line 
 const vector = new VectorLayer({
-  source: source,
-  style: function (feature) {
-    return styleFunction(feature);
-  },
-});
-
-const map = new Map({
-  layers: [raster, vector], //raster is a map and vector is the layer to draw
-  target: 'map',
-  view: new View({
-    center: [-8246000, 512500], //Centro historico de Bogota
-    zoom: 16,
+  background: 'white',
+  source: new VectorSource({
+    url: 'https://openlayers.org/en/v4.6.5/examples/data/geojson/countries.geojson',
+    format: new GeoJSON(),
+    wrapX: false,
   }),
 });
 
-let draw; // global so we can remove it later
+const select = new Select({
+  wrapX: false,
+});
 
-function addInteraction() {
-  const chooseType = typeSelect.value;
-  if (chooseType !== 'None'){
-    draw = new Draw({
-      source: source,
-      type: typeSelect.value,
-      style: function (feature) {
-        return styleFunction(feature, chooseType);
-      },
-    });
-    map.addInteraction(draw);
-  }
-}
+const modify = new Modify({
+  features: select.getFeatures(),
+});
 
-addInteraction();
+const map = new Map({
+  interactions: defaultInteractions().extend([select, modify]),
+  layers: [vector],
+  target: 'map',
+  view: new View({
+    center: fromLonLat([-70, 3]),
+    zoom: 4,
+  }),
+});
+
+document.getElementById('export-png').addEventListener('click', function () {
+  map.once('rendercomplete', function () {
+    const mapCanvas = document.createElement('canvas');
+    const size = map.getSize();
+    mapCanvas.width = size[0];
+    mapCanvas.height = size[1];
+    const mapContext = mapCanvas.getContext('2d');
+    Array.prototype.forEach.call(
+      map.getViewport().querySelectorAll('.ol-layer canvas, canvas.ol-layer'),
+      function (canvas) {
+        if (canvas.width > 0) {
+          const opacity =
+            canvas.parentNode.style.opacity || canvas.style.opacity;
+          mapContext.globalAlpha = opacity === '' ? 1 : Number(opacity);
+          let matrix;
+          const transform = canvas.style.transform;
+          if (transform) {
+            // Get the transform parameters from the style's transform matrix
+            matrix = transform
+              .match(/^matrix\(([^\(]*)\)$/)[1]
+              .split(',')
+              .map(Number);
+          } else {
+            matrix = [
+              parseFloat(canvas.style.width) / canvas.width,
+              0,
+              0,
+              parseFloat(canvas.style.height) / canvas.height,
+              0,
+              0,
+            ];
+          }
+          // Apply the transform to the export map context
+          CanvasRenderingContext2D.prototype.setTransform.apply(
+            mapContext,
+            matrix
+          );
+          const backgroundColor = canvas.parentNode.style.backgroundColor;
+          if (backgroundColor) {
+            mapContext.fillStyle = backgroundColor;
+            mapContext.fillRect(0, 0, canvas.width, canvas.height);
+          }
+          mapContext.drawImage(canvas, 0, 0);
+        }
+      }
+    );
+    mapContext.globalAlpha = 1;
+    mapContext.setTransform(1, 0, 0, 1, 0, 0);
+    const link = document.getElementById('image-download');
+    link.href = mapCanvas.toDataURL();
+    link.click();
+  });
+  map.renderSync();
+});

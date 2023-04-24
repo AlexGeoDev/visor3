@@ -8,22 +8,40 @@
 
 html, body {
   margin: 0;
-  /* height: 100%; */
 }
 #map {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 99vw;
-  height: 90vh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  margin:  3rem auto;
-  z-index: -1;
+  margin: auto;
 }
 
-.buton-line {
+.buton {
   position: sticky;
-  margin: 1rem;
+  margin: 2rem;
+  height: 80vh;
+  width: 138px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.header {
+  margin: 2rem auto;
+  position: sticky;
+  opacity: .8;
+  width: 80vw;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
   z-index: 1;
+}
+
+.header_title {
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 70vw;
 }

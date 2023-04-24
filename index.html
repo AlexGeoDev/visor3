@@ -2,17 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Visor 3</title>
+    <title>Visor 5</title>
     <link rel="stylesheet" href="node_modules/ol/ol.css">
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body>
+    <header class="header">
+      <h2 class="header_title">Visor de todos los paises con geometria editable</h2>
+      <a href="https://webgis-openlayers.vercel.app/">
+        <button class="btn btn-primary  ml-1">Home</button>
+      </a>
+    </header>
     <div id="map" class="map"></div>
-    <form>
-      <select id="type">
-        <option value="LineString">Draw Line</option>
-        <option value="None">None</option>
-      </select>
-    </form>
+    <div class="buton">
+      <a id="export-png" class="btn btn-success" role="button"><i class="fa fa-download"></i> Download PNG</a>
+      <a id="image-download" download="map.png"></a>
+    </div>
+        
     <!-- Pointer events polyfill for old browsers, see https://caniuse.com/#feat=pointer -->
     <script src="https://cdn.jsdelivr.net/npm/elm-pep@1.0.6/dist/elm-pep.js"></script>
     <script type="module" src="main.js"></script>

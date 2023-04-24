@@ -1,0 +1,29 @@
+@import "node_modules/ol/ol.css";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  margin: 0;
+  /* height: 100%; */
+}
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 99vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  margin:  3rem auto;
+  z-index: -1;
+}
+
+.buton-line {
+  position: sticky;
+  margin: 1rem;
+  z-index: 1;
+}

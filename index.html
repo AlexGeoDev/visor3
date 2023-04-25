@@ -1,20 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <title>Visor 3</title>
-    <link rel="stylesheet" href="node_modules/ol/ol.css">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using OpenLayers with Vite</title>
   </head>
   <body>
-    <div id="map" class="map"></div>
-    <form>
-      <select id="type">
-        <option value="LineString">Draw Line</option>
-        <option value="None">None</option>
-      </select>
-    </form>
-    <!-- Pointer events polyfill for old browsers, see https://caniuse.com/#feat=pointer -->
-    <script src="https://cdn.jsdelivr.net/npm/elm-pep@1.0.6/dist/elm-pep.js"></script>
-    <script type="module" src="main.js"></script>
+    <header class="header">
+      <h2>Welcome to my web created with Openlayers</h2>
+    </header>
+    <div id="map"></div>
+    <section class="section_tasks">
+      <div class="card_task">
+        <div class="card_task_p">
+          <p>Visor sencillo con una capa base de Stamen Maps. OpenLayers dispone
+            de una clase específica para definir este tipo de fuente.</p>
+        </div>
+        <div class="butons">
+          <a href="https://webgis-openlayers-visor1.vercel.app//">
+            <div class="buton_task">
+              <button class="btn btn-primary">Visor 1</button>
+            </div>
+          </a>
+          <a href="https://github.com/AlexGeoDev/portfolio" target='_blank'>
+            
+            <div class="logo">
+              <img src="./github.svg" alt="Logo de github" height="40px">
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="card_task">
+        <div>
+          <p class="card_task_p">Visor con un mapa base genérico.
+            Sobre éste, coloca un mapa geológico de cualquier parte del mundo mediante un servicio WMS,
+            ajustando su transparencia al 50%.</p>
+        </div>
+        <div class="butons">
+          <a href="https://webgis-openlayers-visor2.vercel.app/">
+            <div class="buton_task">
+              <button class="btn btn-primary">Visor 2</button>
+            </div>
+          </a>
+          <a href="https://github.com/AlexGeoDev/visor3/tree/visor2" target='_blank'>
+            
+            <div class="logo">
+              <img src="./github.svg" alt="Logo de github" height="40px">
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="card_task">
+        <div>
+          <p class="card_task_p">Control personalizado, que permita activar y desactivar una interacción
+            de tipo Draw para dibujar líneas.</p>
+        </div>
+        <div class="butons">
+          <a href="https://webgis-openlayers-visor3.vercel.app/">
+            <div class="buton_task">
+              <button class="btn btn-primary">Visor 3</button>
+            </div>
+          </a>
+          <a href="https://github.com/AlexGeoDev/visor3/tree/visor3" target='_blank'>
+            
+            <div class="logo">
+              <img src="./github.svg" alt="Logo de github" height="40px">
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="section_tasks2">
+      <div class="card_task">
+        <div>
+          <p class="card_task_p">Definir un estilo personalizado para las líneas que se dibujen con la herramienta
+            desarrollada para el Visor 3.</p>
+        </div>
+        <div class="butons">
+          <a href="https://webgis-openlayers-visor4.vercel.app/">
+            <div class="buton_task">
+              <button class="btn btn-primary">Visor 4</button>
+            </div>
+          </a>
+          <a href="https://github.com/AlexGeoDev/visor3/tree/visor4" target='_blank'>
+            
+            <div class="logo">
+              <img src="./github.svg" alt="Logo de github" height="40px">
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="card_task">
+        <div>
+          <p class="card_task_p">Desarrollo de un visor (capa vectorial) que permita modificar la geometría de la misma.</p>
+        </div>
+        <div class="butons">
+          <a href="https://webgis-openlayers-visor5.vercel.app/">
+            <div class="buton_task">
+              <button class="btn btn-primary">Visor 5</button>
+            </div>
+          </a>
+          <a href="https://github.com/AlexGeoDev/visor3/tree/visor5" target='_blank'>            
+            <div class="logo">
+              <img src="./github.svg" alt="Logo de github" height="40px">
+            </div>
+          </a>
+        </div>
+      </div>      
+    </section>
+    <script type="module" src="./main.js"></script>
   </body>
+  <footer class="futer">
+    <p>Created by <a href="https://alexgeodev.vercel.app/" target="_blank">Alexgeodev</a></p>
+  </footer>
 </html>

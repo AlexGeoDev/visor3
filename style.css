@@ -1,29 +1,150 @@
 @import "node_modules/ol/ol.css";
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 html, body {
   margin: 0;
-  /* height: 100%; */
+  height: 100%;
 }
 #map {
   position: absolute;
+  opacity: 0.7;
   top: 0;
   bottom: 0;
-  width: 99vw;
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-  margin:  3rem auto;
+  width: 425px;
+  height: 1500px;
   z-index: -1;
 }
 
-.buton-line {
-  position: sticky;
-  margin: 1rem;
-  z-index: 1;
+.header {
+  display: flex;
+  justify-content: center;
+  margin: 3rem;
+  width: 80vw;
+  text-align: center;
+}
+
+h2 {
+  background-color: rgb(255, 255, 255);
+  opacity: .7;
+}
+
+.section_tasks {
+  width: 80vw;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section_tasks2 {
+  width: 80vw;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card_task {
+  background-color: rgba(255, 255, 255, 0.48);
+  width: 100%;
+  margin: 1rem auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.buton_task {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.futer {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  background-color: black;
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+}
+
+.butons {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  width: 180px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@media (min-width: 425px) {
+  #map {
+    width: 100vw;
+  }
+}
+
+@media (min-width: 768px) {
+  #map {
+    width: 100%;
+    height: 200%;
+  }
+
+  .header{
+    margin: 0 auto;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    width: 700px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .section_tasks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+  }
+
+  .section_tasks2 {
+    width: 60vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .card_task {
+    background-color: rgba(255, 255, 255, 0.48);
+    width: 25vw;
+  }
+
+  .card_task_p {
+    width: 95%;
+    padding-top: 10px;
+    display: flex;
+    height: 240px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  #map {
+    height: 100vh;
+  }
+
+  .card_task_p {
+    margin: 0 auto;
+    height: 190px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card_task_p {
+    height: 140px;
+  }
 }

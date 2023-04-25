@@ -1,5 +1,4 @@
 import './style.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {Map, View} from 'ol';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';

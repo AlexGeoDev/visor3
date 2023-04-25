@@ -2,19 +2,19 @@ import './style.css'
 import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import { Stroke, Style} from 'ol/style.js';
-import {Draw} from 'ol/interaction.js';
+import {Draw, Modify} from 'ol/interaction.js';
 import {OSM, Vector as VectorSource} from 'ol/source.js';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
 
-const typeSelect = document.getElementById("LineString");
+const typeSelect = document.getElementById("type");
 
 //Set the color and width of line go to draw
 const style = new Style({
   stroke: new Stroke({
-    color: 'rgba(0, 255, 255, 0.8)',
-    lineDash: [10, 10],
-    width: 5,
-  }),
+    color: 'rgba(0, 205, 205, 0.7)',
+    lineDash: [5, 15],
+    width: 4,
+  })
 });
 
 const raster = new TileLayer({
@@ -49,7 +49,7 @@ let draw; // global so we can remove it later
 
 function addInteraction() {
   const chooseType = typeSelect.value;
-  if (chooseType === 'LineString'){
+  if (chooseType !== 'None'){
     draw = new Draw({
       source: source,
       type: typeSelect.value,
